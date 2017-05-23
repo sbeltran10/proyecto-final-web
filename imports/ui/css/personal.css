@@ -1,0 +1,38 @@
+.megamenu ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #000;
+}
+
+.megamenu li {
+    float: left;
+}
+
+.megamenu li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.megamenu li a:hover {
+    background-color: #FFF;
+    color: #000;
+}
+
+.esconder {
+  display: none;
+}
+
+.topBarN {
+  height: 50px;
+  font-size: 20px;
+  padding: 0.55em 0;
+}
+
+.letra20 {
+  font-size: 20px;
+}

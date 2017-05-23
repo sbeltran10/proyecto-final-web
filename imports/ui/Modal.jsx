@@ -22,6 +22,7 @@ export default class Modal extends Component {
         }
         else {
           $('#userloginModal').modal('toggle');
+          a.props.cambiarLogueo(true);
         }
       });
 
@@ -67,6 +68,7 @@ export default class Modal extends Component {
         }
         else {
           $('#userregisterModal').modal('toggle');
+          $('#userloginModal').modal('toggle');
         }
       });
 
