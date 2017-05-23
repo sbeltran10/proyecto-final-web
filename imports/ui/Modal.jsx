@@ -23,6 +23,7 @@ export default class Modal extends Component {
             contentType: "application/json; charset=utf-8",
             success: function(data) {
               //TODO
+              $('#userloginModal').modal('toggle');
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 console.log(jqXHR);
@@ -47,6 +48,7 @@ export default class Modal extends Component {
             contentType: "application/json; charset=utf-8",
             success: function(data) {
               //TODO
+              $('#userregisterModalForm').modal('toggle');
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 console.log(jqXHR);
