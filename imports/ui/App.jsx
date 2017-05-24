@@ -25,8 +25,6 @@ import Modal from './Modal.jsx';
 import Prendas from './Prendas.jsx';
 import Pintas from './Pintas.jsx';
 
-const BASE_URL = "a";
-
 export class App extends Component {
   constructor(props) {
     super(props);
@@ -39,9 +37,18 @@ export class App extends Component {
     this.projection=null;
   }
 
-  cambiarLogueo(valor) {
+  login() {
     this.setState({
-      logueado: valor
+      logueado: true,
+      prendas: true,
+    });
+  }
+
+  logout() {
+    this.setState({
+      logueado: false,
+      prendas: false,
+      conjuntos: false,
     });
   }
 
@@ -85,7 +92,7 @@ export class App extends Component {
   							</li>
   					  	<li className="grid letra20" style={{display: 'inline-block'}}><a className="color4" href="#">Conjuntos</a>
   							</li>
-                <li id="logout" className="letra20" style={{float: 'right',display: 'inline-block', float: 'right'}} ><a href="#">Log-out</a></li>
+                <li id="logout" className="letra20" style={{float: 'right',display: 'inline-block', float: 'right'}} onClick={this.logout.bind(this)} ><a href="#">Logout</a></li>
   						</ul>
   					</div>
   				</div>
@@ -229,7 +236,7 @@ export class App extends Component {
 			{this.state.conjuntos?
 			<Pintas/>:
 			<div></div>}
-      <Modal url={BASE_URL} cambiarLogueo={this.cambiarLogueo.bind(this)}/>
+      <Modal login={this.login.bind(this)}/>
       </div>
     );
   }
