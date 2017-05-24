@@ -23,6 +23,7 @@ import bootstrap from './js/bootstrap.min.js';
 import jsStarbox from './js/jstarbox.js';
 import Modal from './Modal.jsx';
 import Prendas from './Prendas.jsx';
+import Pintas from './Pintas.jsx';
 
 const BASE_URL = "a";
 
@@ -33,7 +34,7 @@ export class App extends Component {
       lista:[],
       logueado: false,
       prendas: false,
-      conjuntos: false,
+      conjuntos: true,
     }
     this.projection=null;
   }
@@ -225,6 +226,9 @@ export class App extends Component {
       		</div>
       	</div>
       </div>}
+			{this.state.conjuntos?
+			<Pintas/>:
+			<div></div>}
       <Modal url={BASE_URL} cambiarLogueo={this.cambiarLogueo.bind(this)}/>
       </div>
     );

@@ -8,7 +8,8 @@ Prendas.schema = new SimpleSchema({
     descripcion: { type: String },
     imagen: { type: String },
     usuario: { type: String },
-    etiquetas: { type: [String] }
+    etiquetas: { type: [String] },
+    tipo: { type: [String] }
 });
 
 // Se encarga de realizar todas las verificaciones usando el esquema definido previamente
