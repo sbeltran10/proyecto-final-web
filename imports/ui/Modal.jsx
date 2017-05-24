@@ -22,7 +22,7 @@ export default class Modal extends Component {
         }
         else {
           $('#userloginModal').modal('toggle');
-          a.props.cambiarLogueo(true);
+          a.props.login();
         }
       });
 

@@ -24,8 +24,6 @@ import jsStarbox from './js/jstarbox.js';
 import Modal from './Modal.jsx';
 import Prendas from './Prendas.jsx';
 
-const BASE_URL = "a";
-
 export class App extends Component {
   constructor(props) {
     super(props);
@@ -38,9 +36,10 @@ export class App extends Component {
     this.projection=null;
   }
 
-  cambiarLogueo(valor) {
+  login() {
     this.setState({
-      logueado: valor
+      logueado: true,
+      prendas: true,
     });
   }
 
@@ -233,7 +232,7 @@ export class App extends Component {
       		</div>
       	</div>
       </div>}
-      <Modal url={BASE_URL} cambiarLogueo={this.cambiarLogueo.bind(this)}/>
+      <Modal login={this.login.bind(this)}/>
       </div>
     );
   }
