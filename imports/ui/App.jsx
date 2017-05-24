@@ -44,6 +44,14 @@ export class App extends Component {
     });
   }
 
+  logout() {
+    this.setState({
+      logueado: false,
+      prendas: false,
+      conjuntos: false,
+    });
+  }
+
   irPrendas () {
     this.setState({
       prendas: true
@@ -84,7 +92,7 @@ export class App extends Component {
   							</li>
   					  	<li className="grid letra20" style={{display: 'inline-block'}}><a className="color4" href="#">Conjuntos</a>
   							</li>
-                <li id="logout" className="letra20" style={{float: 'right',display: 'inline-block', float: 'right'}} ><a href="#">Log-out</a></li>
+                <li id="logout" className="letra20" style={{float: 'right',display: 'inline-block', float: 'right'}} onClick={this.logout.bind(this)} ><a href="#">Logout</a></li>
   						</ul>
   					</div>
   				</div>
