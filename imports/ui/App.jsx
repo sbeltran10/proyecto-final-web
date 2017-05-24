@@ -22,7 +22,8 @@ import script1 from './js/script.js';
 import bootstrap from './js/bootstrap.min.js';
 import jsStarbox from './js/jstarbox.js';
 import Modal from './Modal.jsx';
-import Prendas from './Prendas.jsx';
+import Prendas from './Garments.jsx';
+import Pintas from './Pintas.jsx';
 
 export class App extends Component {
   constructor(props) {
@@ -31,7 +32,7 @@ export class App extends Component {
       lista:[],
       logueado: false,
       prendas: false,
-      conjuntos: false,
+      conjuntos: true,
     }
     this.projection=null;
   }
@@ -74,8 +75,8 @@ export class App extends Component {
   						<div className="top-header-right topBarN">
   							<ul>
                   <div>
-                    <li id="login"><a data-rel="loginModal" href="#">Ingresar</a><span> </span></li>
-    								<li id="signUp"><a data-rel="registerModal" href="#">Registrate</a></li>
+                    <li id="login"><a data-rel="loginModal" href="#">Login</a><span> </span></li>
+    								<li id="signUp"><a data-rel="registerModal" href="#">SignUp</a></li>
                    </div>
   							</ul>
   						</div>
@@ -85,11 +86,11 @@ export class App extends Component {
           <div className="header-bottom megamenu" style={{background: 'black'}}>
   					<div className="wrap">
   						<ul className="skyblue"><li className="showhide" style={{display: 'none'}}><span className="title">Menu</span><span className="icon1"></span><span className="icon2"></span></li>
-                <li className="grid letra20" style={{display: 'inline-block'}} onClick={this.irInicio.bind(this)}><a className="color2" href="#">Inicio</a>
+                <li className="grid letra20" style={{display: 'inline-block'}} onClick={this.irInicio.bind(this)}><a className="color2" href="#">Home</a>
                 </li>
-                <li className="grid letra20" style={{display: 'inline-block'}} onClick={this.irPrendas.bind(this)}><a className="color2" href="#">Prendas</a>
+                <li className="grid letra20" style={{display: 'inline-block'}} onClick={this.irPrendas.bind(this)}><a className="color2" href="#">Garments</a>
   							</li>
-  					  	<li className="grid letra20" style={{display: 'inline-block'}}><a className="color4" href="#">Conjuntos</a>
+  					  	<li className="grid letra20" style={{display: 'inline-block'}}><a className="color4" href="#">Outfits</a>
   							</li>
                 <li id="logout" className="letra20" style={{float: 'right',display: 'inline-block', float: 'right'}} onClick={this.logout.bind(this)} ><a href="#">Logout</a></li>
   						</ul>
@@ -97,7 +98,7 @@ export class App extends Component {
   				</div>
           }
         </div>
-      {this.state.prendas?<Prendas/>:
+      {this.state.prendas?<Garments/>:
         <div>
             <div className="mid-header">
               <div className="wrap">
@@ -232,6 +233,9 @@ export class App extends Component {
       		</div>
       	</div>
       </div>}
+			{this.state.conjuntos?
+			<Pintas/>:
+			<div></div>}
       <Modal login={this.login.bind(this)}/>
       </div>
     );

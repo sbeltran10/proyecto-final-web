@@ -1,0 +1,48 @@
+.center-outift{
+
+}
+
+.outfit-outline-edit{
+    height: 100em;
+    background: url('/images/body-outline.png');
+    background-repeat:no-repeat;
+   background-size:contain;
+}
+
+.slot-cabeza-edit, .slot-torso-edit, .slot-piernas-edit, .slot-pies-edit{
+    border: 0.1em solid black;
+    margin: 0.5em;
+    border-radius: 10%;
+    cursor:pointer;
+    background-color: grey;
+    opacity: 0.2;
+}
+
+.slot-cabeza-edit:hover, .slot-torso-edit:hover, .slot-piernas-edit:hover, .slot-pies-edit:hover{
+    opacity: 0.4;
+}
+
+.slot-cabeza-edit{
+    height: 8em
+}
+
+.slot-torso-edit{
+    height: 16em
+}
+
+.slot-piernas-edit{
+    height: 22em
+}
+
+.slot-pies-edit{
+    height: 6em
+}
+
+.filled{
+    opacity: 1;
+    background-color: white;
+}
+
+.filled:hover{
+
+}
