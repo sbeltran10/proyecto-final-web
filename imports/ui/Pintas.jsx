@@ -13,9 +13,10 @@ export default class Pintas extends Component {
         var slot = document.getElementsByClassName('slot-' + slot + '-edit')[0];
         console.log(slot);
         slot.className += " filled";
-        slot.style.backgroundRepeat="no-repeat";
+        slot.style.backgroundRepeat = "no-repeat";
+        slot.style.backgroundPosition = "center";
         slot.style.backgroundImage = 'url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSaruUrCKsMYKDr5ZNa5DcWlyNkJNsMhh5ic3iILvO-UoPVR1H9)';
-        slot.style.backgroundSize= "contain";
+        slot.style.backgroundSize = "contain";
     }
 
 
@@ -52,7 +53,19 @@ export default class Pintas extends Component {
                             <div className="col-md-2"></div>
                         </div>
                     </div>
-                    <div className="col-md-4"></div>
+                    <div className="col-md-2 accesories-edit">
+                        <div className="row">
+                            <div className="col-md-10">
+                                <div className="slot-accesorio1-edit" onClick={() => this.changeSlot("accesorio1")}></div>
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="col-md-10">
+                                <div className="slot-accesorio2-edit" onClick={() => this.changeSlot("accesorio2")}></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-md-2"></div>
                 </div>
             </div>
         );

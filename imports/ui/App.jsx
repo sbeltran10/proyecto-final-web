@@ -22,7 +22,7 @@ import script1 from './js/script.js';
 import bootstrap from './js/bootstrap.min.js';
 import jsStarbox from './js/jstarbox.js';
 import Modal from './Modal.jsx';
-import Prendas from './Garments.jsx';
+import Garments from './Garments.jsx';
 import Pintas from './Pintas.jsx';
 
 export class App extends Component {

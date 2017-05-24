@@ -3,13 +3,12 @@
 }
 
 .outfit-outline-edit{
-    height: 100em;
     background: url('/images/body-outline.png');
     background-repeat:no-repeat;
    background-size:contain;
 }
 
-.slot-cabeza-edit, .slot-torso-edit, .slot-piernas-edit, .slot-pies-edit{
+.slot-cabeza-edit, .slot-torso-edit, .slot-piernas-edit, .slot-pies-edit, .slot-accesorio1-edit, .slot-accesorio2-edit{
     border: 0.1em solid black;
     margin: 0.5em;
     border-radius: 10%;
@@ -18,7 +17,7 @@
     opacity: 0.2;
 }
 
-.slot-cabeza-edit:hover, .slot-torso-edit:hover, .slot-piernas-edit:hover, .slot-pies-edit:hover{
+.slot-cabeza-edit:hover, .slot-torso-edit:hover, .slot-piernas-edit:hover, .slot-pies-edit:hover, .slot-accesorio1-edit:hover, .slot-accesorio2-edit:hover{
     opacity: 0.4;
 }
 
@@ -35,7 +34,11 @@
 }
 
 .slot-pies-edit{
-    height: 6em
+    height: 8em
+}
+
+.slot-accesorio1-edit,.slot-accesorio2-edit{
+     height: 8em;
 }
 
 .filled{
