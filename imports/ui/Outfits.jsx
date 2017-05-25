@@ -30,9 +30,11 @@ export default class Outfits extends Component {
         slot.style.backgroundSize = "contain";
     }
 
+    filterWardrobeByType(type){
+
+    }
 
     render() {
-
         var wardrobeSlots = [];
         for (var i = 0; i < 10; i++) {
             wardrobeSlots.push(

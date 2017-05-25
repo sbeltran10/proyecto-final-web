@@ -52,6 +52,13 @@ export default class Garments extends Component {
     });
   }
 
+  renderGarments() {
+    console.log(this.props.garments);
+    return this.props.garments.map((garment,index) => {
+      return (<Garment key={index} garment={garment}/>);
+    });
+  }
+
   render() {
     return (
       <div className="container">
@@ -101,11 +108,9 @@ export default class Garments extends Component {
         </div>
         <br />
         <br />
+        <h3>Your Garments</h3>
         <div className="row">
-          <div className="col-md-3">
-            <h3>Your Cloths</h3>
-            <Garment />
-          </div>
+            {this.renderGarments()}
         </div>
       </div>
     );
