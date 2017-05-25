@@ -21,13 +21,34 @@
     opacity: 0.2;
 }
 
+.wardrobe-slot-item{
+    border: 0.1em solid black;
+    margin: 0.5em;
+    border-radius: 10%;
+    height: 9em;
+    cursor:pointer;
+    background-repeat:no-repeat;
+   background-size:contain;
+   background-position: center;
+}
+
+.wardrobe-slot-item:hover{
+    border: 0.1em solid black;
+    margin: 0.5em;
+    border-radius: 10%;
+    height: 9em;
+    opacity: 0.2;
+    cursor:pointer;
+    opacity: 0.4;
+}
+
 .outfit-outline-edit{
     background: url('/images/body-outline.png');
     background-repeat:no-repeat;
    background-size:contain;
 }
 
-.slot-head-edit, .slot-torso-edit, .slot-legs-edit, .slot-feet-edit, .slot-accessory1-edit, .slot-accessory2-edit{
+.slot-hat-edit, .slot-shirt-edit, .slot-pants-edit, .slot-shoes-edit, .slot-accessory1-edit, .slot-accessory2-edit{
     border: 0.1em solid black;
     margin: 0.5em;
     border-radius: 10%;
@@ -36,23 +57,23 @@
     opacity: 0.2;
 }
 
-.slot-head-edit:hover, .slot-torso-edit:hover, .slot-legs-edit:hover, .slot-feet-edit:hover, .slot-accessory1-edit:hover, .slot-accessory2-edit:hover{
+.slot-hat-edit:hover, .slot-shirt-edit:hover, .slot-pants-edit:hover, .slot-shoes-edit:hover, .slot-accessory1-edit:hover, .slot-accessory2-edit:hover{
     opacity: 0.4;
 }
 
-.slot-head-edit{
+.slot-hat-edit{
     height: 8em
 }
 
-.slot-torso-edit{
+.slot-shirt-edit{
     height: 16em
 }
 
-.slot-legs-edit{
+.slot-pants-edit{
     height: 22em
 }
 
-.slot-feet-edit{
+.slot-shoes-edit{
     height: 8em
 }
 

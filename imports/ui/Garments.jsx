@@ -89,7 +89,7 @@ export default class Garments extends Component {
                   <option value="shirt">Shirt</option>
                   <option value="shoes">Shoes</option>
                   <option value="hat">Hat</option>
-                  <option value="accesory">Accesory</option>
+                  <option value="accesory">Accessory</option>
                 </select>
               </div>
               <div className="form-group">
