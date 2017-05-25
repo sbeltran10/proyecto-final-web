@@ -17,13 +17,15 @@ export default class Garment extends Component {
             </h3>
           </div>
           <div className="panel-body">
-            <img className="project-thumb" src={this.props.garment.image} width="250" height="250" />
-            <h4>
-              <strong>Type: </strong>{this.props.garment.type}
-            </h4>
-            <h4>
-              <strong>Tag: </strong>{this.props.garment.tag}
-            </h4>
+            <center>
+              <img className="project-thumb" src={this.props.garment.image} width="250" height="250" />
+              <h4>
+                <strong>Type: </strong>{this.props.garment.type}
+              </h4>
+              <h4>
+                <strong>Tag: </strong>{this.props.garment.tag}
+              </h4>
+            </center>
           </div>
         </div>
       </div>

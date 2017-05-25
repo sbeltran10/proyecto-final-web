@@ -53,7 +53,6 @@ export default class Garments extends Component {
   }
 
   renderGarments() {
-    console.log(this.props.garments);
     return this.props.garments.map((garment,index) => {
       return (<Garment key={index} garment={garment}/>);
     });
