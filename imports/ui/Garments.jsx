@@ -36,11 +36,9 @@ export default class Garments extends Component {
         garmentInfo[field.name] = field.value;
       });
       garmentInfo.image = reader.result;
-      garmentInfo.user = "as";
 
       Meteor.call('garments.insert', garmentInfo, function (err,result) {
         if (err) {
-          console.log(new Date().getTime());
           console.log(err);
         }
         else {

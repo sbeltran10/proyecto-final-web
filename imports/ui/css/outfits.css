@@ -94,7 +94,69 @@
 
 .slot-accessory1-edit,.slot-accessory2-edit{
      height: 8em;
+}
 
+
+.outfit-outline{
+    background: url('/images/body-outline.png');
+    background-repeat:no-repeat;
+   background-size:contain;
+   background-position:center;
+}
+
+.slot-hat, .slot-shirt, .slot-pants, .slot-shoes, .slot-accessory1, .slot-accessory2{
+    border: 0.1em solid black;
+    margin: 0.1em;
+    border-radius: 10%;
+    background-color: grey;
+    opacity: 0.2;
+}
+
+.slot-hat{
+    height: 3em
+}
+
+.slot-shirt{
+    height: 6em
+}
+
+.slot-pants{
+    height: 7em
+}
+
+.slot-shoes{
+    height: 3em
+}
+
+.accessory-back1{
+    background: url('/images/watch.png');
+}
+
+.accessory-back2{
+    background: url('/images/pendant.png');
+}
+
+.accessory-back1, .accessory-back2{
+    background-repeat:no-repeat;
+   background-size:50% 50%;
+   background-position:center;
+}
+
+
+.slot-accessory1,.slot-accessory2{
+     height: 2em;
+}
+
+.product-grid-outfit{
+	width: 40%;
+	margin: 0 4% 4% 0;
+	float: left;
+	border: 1px solid #E9E9E9;
+	position: relative;
+	transition: 0.5s all;
+	-webkit-transition: 0.5s all;
+	-moz-transition: 0.5s all;
+	-o-transition: 0.5s all;
 }
 
 .filled{

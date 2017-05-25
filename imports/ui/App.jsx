@@ -73,7 +73,7 @@ export class App extends Component {
 
   renderOutfits() {
     return this.props.outfits.map((outfit,index) => {
-      return (<OutfitComponent key={index} outfit={garment}/>);
+      return (<OutfitComponent key={index} outfit={outfit}/>);
     });
   }
 

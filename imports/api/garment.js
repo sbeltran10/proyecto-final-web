@@ -38,6 +38,7 @@ if (Meteor.isServer) {
             }
             console.log(new Date().getTime());
             try {
+                garment.user = Meteor.userId();
                 Garments.insert(garment);
             }
             catch (err) {
