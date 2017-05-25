@@ -22,8 +22,9 @@ import script1 from './js/script.js';
 import bootstrap from './js/bootstrap.min.js';
 import jsStarbox from './js/jstarbox.js';
 import Modal from './Modal.jsx';
-import Garments from './Garments.jsx';
+import GarmentsComponent from './Garments.jsx';
 import Pintas from './Pintas.jsx';
+import {Garments} from '../api/garment.js';
 
 export class App extends Component {
   constructor(props) {
@@ -98,7 +99,7 @@ export class App extends Component {
   				</div>
           }
         </div>
-      {this.state.prendas?<Garments/>:
+      {this.state.prendas?<GarmentsComponent garments={this.props.garments}/>:
         <div>
             <div className="mid-header">
               <div className="wrap">
@@ -242,8 +243,12 @@ export class App extends Component {
   }
 }
 
-export default AppContainer = createContainer(() => {
+App.propTypes = {
+  garments : PropTypes.array.isRequired
+};
 
+export default AppContainer = createContainer(() => {
   return {
+    garments: Garments.find({}).fetch()
   };
 }, App);
