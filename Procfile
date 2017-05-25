@@ -1,1 +1,1 @@
-meteor npm install --save babel-runtime react react-dom prop-types
+web: .meteor/heroku_build/bin/node $NODEJS_PARAMS .meteor/heroku_build/app/main.js
