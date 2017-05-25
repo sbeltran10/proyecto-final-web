@@ -26,7 +26,7 @@ import OutfitsComponent from './Outfits.jsx';
 import OutfitComponent from './Outfit.jsx';
 import GarmentsComponent from './Garments.jsx';
 import {Garments} from '../api/garment.js';
-import {Outfits} from '../api/outfits.js';
+import {Outfit} from '../api/outfit.js';
 
 export class App extends Component {
   constructor(props) {
@@ -187,6 +187,6 @@ App.propTypes = {
 export default AppContainer = createContainer(() => {
   return {
     garments: Garments.find({}).fetch(),
-    outfits: Outfits.find({}).fetch()
+    outfits: Outfit.find({}).fetch()
   };
 }, App);

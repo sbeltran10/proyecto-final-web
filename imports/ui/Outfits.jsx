@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Meteor } from "meteor/meteor";
 import { Garments } from '../api/garment.js';
+import { Outfit } from '../api/outfit.js'
 import styles from "./css/outfits.css"
 import '../assets/plugins/jquery-1.11.3.min.js'
 
@@ -16,6 +17,7 @@ export default class Outfits extends Component {
             accessory1: null,
             accessory2: null,
             selected: null,
+            name: ""
         }
 
     }
@@ -44,7 +46,7 @@ export default class Outfits extends Component {
                     var ctx2 = ctx1
                     var cNewGarment = newGarment;
                     return function () {
-                        ctx2.updateSlot(slot, cNewGarment);
+                        ctx2.updateSlot(slot, cNewGarment, ctx1);
                     }
                 })();
             }
@@ -55,8 +57,8 @@ export default class Outfits extends Component {
         }
     }
 
-    updateSlot(slot, garment) {
-        console.log(garment);
+    updateSlot(slot, garment, ctx) {
+        ctx.setState({ [slot]: garment });
         var slotToUpdate = document.getElementsByClassName('slot-' + slot + '-edit')[0];
         slotToUpdate.className += " filled";
         slotToUpdate.style.backgroundRepeat = "no-repeat";
@@ -65,6 +67,72 @@ export default class Outfits extends Component {
         slotToUpdate.style.backgroundSize = "contain";
     }
 
+    saveOutfit(event) {
+        event.preventDefault();
+        var newOutfit = {
+            createdAt: this.getCurrentDate(),
+            name: this.state.name
+        };
+
+        var newGarments = [];
+
+        if (this.state.hat) {
+            newGarments.push(this.state.hat);
+        }
+        if (this.state.shirt) {
+            newGarments.push(this.state.shirt);
+        }
+        if (this.state.pants) {
+            newGarments.push(this.state.pants);
+        }
+        if (this.state.shoes) {
+            newGarments.push(this.state.shoes);
+        }
+        if (this.state.accessory1) {
+            newGarments.push(this.state.accessory1);
+        }
+        if (this.state.accessory2) {
+            newGarments.push(this.state.accessory2);
+        }
+
+        newOutfit.garments = newGarments;
+
+        Meteor.call('outfits.insert', newOutfit, function (err, result) {
+            if (err) {
+                console.log(err);
+            }
+            else {
+                console.log("agregado");
+            }
+        });
+
+    }
+
+    getCurrentDate() {
+        var today = new Date();
+        var dd = today.getDate();
+        var mm = today.getMonth() + 1; //January is 0!
+        var yyyy = today.getFullYear();
+        var hh = today.getHours();
+        var m = today.getMinutes();
+        var s = today.getSeconds();
+
+        if (dd < 10) {
+            dd = '0' + dd
+        }
+
+        if (mm < 10) {
+            mm = '0' + mm
+        }
+
+        return mm + '/' + dd + '/' + yyyy + "@" + hh + ":" + m + ":" + s;
+    }
+
+    handleInputChange(event) {
+		this.setState({
+			[event.target.name]: event.target.value
+		});
+	}
 
     render() {
         var wardrobeSlots = [];
@@ -129,7 +197,22 @@ export default class Outfits extends Component {
                         </div>
                     </div>
                 </div>
+
+                <form id="newGarmentForm" onSubmit={this.saveOutfit.bind(this)}>
+                    <div className="row">
+                        <div className="col-md-4">
+                            <div className="form-group">
+                                <label htmlFor="user_name_enterprise">Name</label>
+                                <input type="text" id="name" required name="name" value={this.state.name} onChange={this.handleInputChange.bind(this)} className="form-control" placeholder="Outfit name" />
+                            </div>
+                        </div>
+                        <div className="col-md-4">
+                            <button type="submit" className="btn btn-default btn-outline">Save outfit</button>
+                        </div>
+                    </div>
+                </form>
             </div>
         );
     }
 }
+

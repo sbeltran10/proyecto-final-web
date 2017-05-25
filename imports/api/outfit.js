@@ -1,14 +1,15 @@
 import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
 
-export const Outfits = new Mongo.Collection('outfits', { idGeneration: 'MONGO' });
+export const Outfit = new Mongo.Collection('outfits', { idGeneration: 'MONGO' });
 
-Outfits.schema = new SimpleSchema({
+Outfit.schema = new SimpleSchema({
     name: { type: String },
     user: { type: String },
     shared: { type: Boolean },
     description: { type: String },
-    garments: { type: [Object] }
+    garments: { type: [Object] },
+    createdAt: { type: Date }
 });
 
 // Se encarga de realizar todas las verificaciones usando el esquema definido previamente
@@ -17,13 +18,14 @@ Outfits.schema = new SimpleSchema({
 
 if (Meteor.isServer) {
     Meteor.publish('outfits', function outfitsPublication() {
-        return Outfits.find({}, {
+        return Outfit.find({}, {
             fields: {
-                nombre: 1,
-                usuario: 1,
-                compartida: 1,
+                name: 1,
+                user: 1,
+                shared: 1,
                 descripcion: 1,
-                prendas: 1
+                garments: 1,
+                createdAt: 1
             }
         });
     });
@@ -31,11 +33,12 @@ if (Meteor.isServer) {
 
 
 Meteor.methods({
-    'outfits.insert'(pinta) {
+    'outfits.insert'(outfit) {
         // Verificacion de logeo y rol
         if (!Meteor.user()) {
             throw new Meteor.Error('not-authorized');
         }
-        return Outfits.insert(pinta);
+        outfit.user = Meteor.userId();
+        return Outfit.insert(outfit);
     },
 });
