@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import { Meteor } from "meteor/meteor";
 import { Garments } from '../api/garment.js';
-import { Outfit } from '../api/outfit.js'
-import styles from "./css/outfits.css"
-import '../assets/plugins/jquery-1.11.3.min.js'
+import { Outfit } from '../api/outfit.js';
+import styles from "./css/outfits.css";
+import '../assets/plugins/jquery-1.11.3.min.js';
+import OutfitComponent from './Outfit.jsx';
 
 export default class Outfits extends Component {
 
@@ -19,7 +20,6 @@ export default class Outfits extends Component {
             selected: null,
             name: ""
         }
-
     }
 
     changeSlot(newSlot) {
@@ -76,18 +76,22 @@ export default class Outfits extends Component {
         };
 
         var newGarments = [];
+        var contador = 0;
 
         if (this.state.hat) {
             newGarments.push(this.state.hat);
         }
         if (this.state.shirt) {
             newGarments.push(this.state.shirt);
+            contador = contador + 1;
         }
         if (this.state.pants) {
             newGarments.push(this.state.pants);
+            contador = contador + 1;
         }
         if (this.state.shoes) {
             newGarments.push(this.state.shoes);
+            contador = contador + 1;
         }
         if (this.state.accessory1) {
             newGarments.push(this.state.accessory1);
@@ -96,17 +100,36 @@ export default class Outfits extends Component {
             newGarments.push(this.state.accessory2);
         }
 
-        newOutfit.garments = newGarments;
+        if(contador>2){
+          newOutfit.garments = newGarments;
 
-        Meteor.call('outfits.insert', newOutfit, function (err, result) {
-            if (err) {
-                console.log(err);
-            }
-            else {
-                console.log("agregado");
-            }
-        });
+          Meteor.call('outfits.insert', newOutfit, function (err, result) {
+              if (err) {
+                  console.log(err);
+              }
+              else {
+                jQuery(document).ready(function ($) {$('html,body').animate({
+                  scrollTop: $("#yourOutfits").offset().top
+                },
+                  'slow');
+                });
+                alert("Your outfit have been created");
 
+              }
+          });
+        } else {
+          alert("You have to choose at least a shirt, pants and shoes to create an outfit");
+        }
+    }
+
+    renderOutfits(){
+      return this.props.outfits.map((outfit,index) => {
+        if(outfit.user===Meteor.userId()) {
+          return (<OutfitComponent key={index} outfit={outfit}/>);
+        } else {
+          return '';
+        }
+      });
     }
 
     getCurrentDate() {
@@ -139,7 +162,7 @@ export default class Outfits extends Component {
         var wardrobeSlots = [];
         for (var i = 0; i < 10; i++) {
             wardrobeSlots.push(
-                <div className="col-md-6">
+                <div className="col-md-6" key={i}>
                     <div className="wardrobe-slot-empty" id={"garment" + i}></div>
                 </div>
             );
@@ -147,10 +170,28 @@ export default class Outfits extends Component {
 
         return (
             <div className="container">
+                <div className="row">
+                  <h2>Create your own outfits</h2>
+                  <br/>
+                  <h4>Click a square in the Outfit Section and then choose a garment of your Wardrobe that will go there.</h4>
+                  <h4>Or see the outfits that you have create at the bottom of the page.</h4>
+                </div>
+                <br/>
+                <form id="newGarmentForm" onSubmit={this.saveOutfit.bind(this)}>
+                    <div className="row">
+                        <div className="col-md-4">
+                            <div className="form-group">
+                                <label htmlFor="user_name_enterprise">Name</label>
+                                <input type="text" id="name" required name="name" value={this.state.name} onChange={this.handleInputChange.bind(this)} className="form-control" placeholder="Outfit name" />
+                            </div>
+                            <button type="submit" className="btn btn-default btn-outline">Save outfit</button>
+                        </div>
+                    </div>
+                </form>
                 <div className="row headers-edit">
-                    <div className="col-md-5 title-wardrobe">Wardrobe</div>
+                    <div className="col-md-5 title-wardrobe"><h3>Wardrobe</h3></div>
                     <div className="col-md-1"></div>
-                    <div className="col-md-6 title-outfit">Outfit</div>
+                    <div className="col-md-6 title-outfit"><h3>Outfit</h3></div>
                 </div>
                 <div className="row center-outfit">
                     <div className="col-md-5 outfit-wardrobe">
@@ -198,20 +239,10 @@ export default class Outfits extends Component {
                         </div>
                     </div>
                 </div>
-
-                <form id="newGarmentForm" onSubmit={this.saveOutfit.bind(this)}>
-                    <div className="row">
-                        <div className="col-md-4">
-                            <div className="form-group">
-                                <label htmlFor="user_name_enterprise">Name</label>
-                                <input type="text" id="name" required name="name" value={this.state.name} onChange={this.handleInputChange.bind(this)} className="form-control" placeholder="Outfit name" />
-                            </div>
-                        </div>
-                        <div className="col-md-4">
-                            <button type="submit" className="btn btn-default btn-outline">Save outfit</button>
-                        </div>
-                    </div>
-                </form>
+                <div className="row" id="yourOutfits">
+                <h3>Your Outfits</h3>
+                {this.renderOutfits()}
+                </div>
             </div>
         );
     }

@@ -35,7 +35,7 @@ export class App extends Component {
       lista:[],
       logueado: false,
       prendas: false,
-      conjuntos: true,
+      conjuntos: false,
     }
     this.projection=null;
   }
@@ -57,12 +57,19 @@ export class App extends Component {
 
   irPrendas () {
     this.setState({
-      prendas: true
+      prendas: true,
+      conjuntos: false,
+    });
+  }
+
+  irOutfits () {
+    this.setState({
+      prendas:false,
+      conjuntos: true,
     });
   }
 
   irInicio () {
-    console.log("llego");
     this.setState({
       prendas: false,
       conjuntos: false,
@@ -71,7 +78,7 @@ export class App extends Component {
 
   renderOutfits() {
     return this.props.outfits.map((outfit,index) => {
-      return (<OutfitComponent key={index} outfit={outfit}/>);
+      return (<OutfitComponent key={index} outfit={outfit} app={this.state.logueado}/>);
     });
   }
 
@@ -99,7 +106,7 @@ export class App extends Component {
                 </li>
                 <li className="grid letra20" style={{display: 'inline-block'}} onClick={this.irPrendas.bind(this)}><a className="color2" href="#">Garments</a>
   							</li>
-  					  	<li className="grid letra20" style={{display: 'inline-block'}}><a className="color4" href="#">Outfits</a>
+  					  	<li className="grid letra20" style={{display: 'inline-block'}} onClick={this.irOutfits.bind(this)}><a className="color4" href="#">Outfits</a>
   							</li>
                 <li id="logout" className="letra20" style={{float: 'right',display: 'inline-block', float: 'right'}} onClick={this.logout.bind(this)} ><a href="#">Logout</a></li>
   						</ul>
@@ -108,69 +115,59 @@ export class App extends Component {
           }
         </div>
       {this.state.prendas?<GarmentsComponent garments={this.props.garments}/>:
-        <div>
-            <div className="mid-header">
-              <div className="wrap">
-                <div className="mid-grid-left">
-                  <div className="container">
-                    <div className="row">
-                      <div className="col-md-6">
-                          <h1>Outfit-Chooser</h1>
-                      </div>
-                      <div className="col-md-3">
-                          <form>
-                            <input type="text" placeholder="What Are You Looking for?"/>
-                          </form>
-                      </div>
-                    </div>
+      this.state.conjuntos?
+			<OutfitsComponent outfits={this.props.outfits}/>:
+      <div>
+        <div className="mid-header">
+          <div className="container">
+            <div className="mid-grid-left">
+              <div className="container">
+                <div className="row">
+                  <div className="col-md-6">
+                      <h1>Outfit-Chooser</h1>
                   </div>
-                </div>
-                <div className="mid-grid-right">
-                  <div className="container">
-                    <div className="row">
-                      <div className="col-md-6">
-                          <img src="./images/image-sprit.png"/>
-                      </div>
-                      <div className="col-md-6">
-                        <h2>Our mision is</h2>
-                        <br/>
-                        <p>Select yout outfit and make it famous. Es un hecho establecido hace demasiado tiempo que un lector se distraerá con el contenido del texto de un sitio mientras que mira su diseño. El punto de usar Lorem Ipsum es que tiene una distribución más o menos normal de las letras, al contrario de usar textos como por ejemplo "Contenido aquí, contenido aquí". Estos textos hacen parecerlo un español que se puede leer. Muchos paquetes de autoedición y editores de páginas web usan el Lorem Ipsum como su texto por defecto, y al hacer una búsqueda de "Lorem Ipsum" va a dar por resultado muchos sitios web que usan este texto si se encuentran en estado de desarrollo. Muchas versiones han evolucionado a través de los años, algunas veces por accidente, otras veces a propósito (por ejemplo insertándole humor y cosas por el estilo).</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="clear"> </div>
-              </div>
-            </div>
-          <div className="content">
-            <div className="container">
-              <div className="row">
-                <div className="col-md-6">
-                  <h2>Latest Outfits</h2>
                 </div>
               </div>
             </div>
-            <div className="wrap">
-              <div className="content-left">
-						    <div className="content-left-top-grid">
-      							<div className="content-left-price-selection">
-      								<h4>Select a tag to filter:</h4>
-
-						        </div>
-						    </div>
-				    </div>
-				    <div className="content-right">
-					     <div className="product-grids">
-                 {this.renderOutfits()}
-					     </div>
-				      </div>
-				    <div className="clear"> </div>
-      		</div>
+            <div className="mid-grid-right">
+              <div className="container">
+                <div className="row">
+                  <div className="col-md-6">
+                      <img src="./images/image-sprit.png"/>
+                  </div>
+                  <div className="col-md-6">
+                    <h2>What is this page about?</h2>
+                    <br/>
+                    <h4>Have you ask questions like: How should I dress today? or Which is the best outfit that I have?</h4>
+                    <h4>No more, we provide you with a way of keeping track of your clothes and outfits.</h4>
+                    <h4>Share your best outfit combinations and showoff your fashion skills!.</h4>
+                    <br/>
+                    <h2>How to use the page?</h2>
+                    <br/>
+                    <h4>Look for other persons outfits at the bottom of the page and login to make your own. First uploding pictures of your clothes and then create and outfit.</h4>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="clear"> </div>
+          </div>
+        </div>
+        <div className="content">
+          <div className="container">
+            <div className="row">
+              <div className="col-md-6">
+                <h2>Latest Outfits</h2>
+              </div>
+            </div>
+          </div>
+          <div className="wrap">
+				     <div className="product-grids">
+               {this.renderOutfits()}
+				     </div>
+			           <div className="clear"> </div>
+    		  </div>
       	</div>
       </div>}
-			{this.state.conjuntos?
-			<OutfitsComponent/>:
-			<div></div>}
       <Modal login={this.login.bind(this)}/>
       </div>
     );

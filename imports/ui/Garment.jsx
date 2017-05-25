@@ -10,7 +10,7 @@ export default class Garment extends Component {
   render() {
     return (
       <div className="col-md-3">
-        <div className="project panel panel-default">
+        <div className="panel panel-default">
           <div className="panel-heading">
             <h3 style={{textAlign: 'center'}}>
               {this.props.garment.name}

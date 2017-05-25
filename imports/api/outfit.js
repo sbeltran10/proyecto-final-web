@@ -9,7 +9,8 @@ Outfit.schema = new SimpleSchema({
     shared: { type: Boolean },
     description: { type: String },
     garments: { type: [Object] },
-    createdAt: { type: Date }
+    createdAt: { type: Date },
+    rating: { type: Number }
 });
 
 // Se encarga de realizar todas las verificaciones usando el esquema definido previamente

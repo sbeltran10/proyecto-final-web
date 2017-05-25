@@ -5,11 +5,9 @@ export default class Outfit extends Component {
 
   constructor(props) {
     super(props);
-
   }
 
   componentDidMount() {
-    console.log(this.props.outfit.garments);
     var garments = this.props.outfit.garments;
     var currentAccesory = 1;
     for (var i = 0; i < garments.length; i++) {
@@ -29,17 +27,25 @@ export default class Outfit extends Component {
     }
   }
 
+  vote() {
+
+  }
+
+  addButton() {
+    return (<button className="btn btn-default" onClick={this.vote.bind(this)}>Votar</button>);
+  }
+
   render() {
     return (
       <div className="product-grid-outfit">
         <div className="product-grid-head">
-          <h3>{this.props.outfit.name}</h3>
-          <div className="block">
-            <div className="starbox small ghosting"><div className="positioner"><div className="stars"><div className="ghost"></div><div className="colorbar"></div><div className="star_holder"><div className="star star-0"></div><div className="star star-1"></div><div className="star star-2"></div><div className="star star-3"></div><div className="star star-4"></div></div></div></div></div> <span> (46)</span>
-          </div>
+          <center><h3>{this.props.outfit.name}</h3>
+          </center>
         </div>
         <div className="product-pic">
-          <div className="col-md-4 outfit-outline">
+          <div className="row">
+          <div className="col-md-4"></div>
+          <div className="col-md-5 outfit-outline">
             <div className="row">
               <div className="col-md-3"></div>
               <div className="col-md-6">
@@ -65,7 +71,7 @@ export default class Outfit extends Component {
               </div>
             </div>
           </div>
-          <div className="col-md-2 accesories">
+          <div className="col-md-3 accesories">
             <div className="row">
               <div className="col-md-10 accessory-back1">
                 <div className="slot-accessory1" id={"accessory1" + this.props.outfit._id._str}></div>
@@ -80,6 +86,16 @@ export default class Outfit extends Component {
           <p>
             {this.props.outfit.description}
           </p>
+          </div>
+          <br/>
+          {this.props.ap?
+          <div className="row">
+            <center>
+                {this.addButton()}
+            </center>
+          </div>:''
+          }
+          <br/>
         </div>
       </div>
     );
