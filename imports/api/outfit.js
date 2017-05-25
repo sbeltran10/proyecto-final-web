@@ -42,4 +42,14 @@ Meteor.methods({
         outfit.user = Meteor.userId();
         return Outfit.insert(outfit);
     },
+    'outfits.remove'(outfitId) {
+
+        if (!Meteor.user()) {
+            throw new Meteor.Error('not-authorized');
+        }
+        if (!outfitId || Object.keys(outfitId).length === 0) {
+            throw new Meteor.Error('invalid-id', "Invalid id");
+        }
+        return Outfit.remove(outfitId);
+    },
 });

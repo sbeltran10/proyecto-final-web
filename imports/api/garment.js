@@ -46,6 +46,16 @@ if (Meteor.isServer) {
                 throw new Meteor.Error(err);
             }
         },
+        'garments.remove'(garmentId) {
+
+        if (!Meteor.user()) {
+            throw new Meteor.Error('not-authorized');
+        }
+        if (!garmentId || Object.keys(garmentId).length === 0) {
+            throw new Meteor.Error('invalid-id', "Invalid id");
+        }
+        return Garments.remove(garmentId);
+    },
     });
 }
 
