@@ -18,7 +18,7 @@ Outfit.schema = new SimpleSchema({
 
 if (Meteor.isServer) {
     Meteor.publish('outfits', function outfitsPublication() {
-        return Outfit.find({}, {
+        return Outfit.find({},{sort: {createdAt: -1}}, {
             fields: {
                 name: 1,
                 user: 1,

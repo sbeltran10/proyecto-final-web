@@ -185,6 +185,8 @@ App.propTypes = {
 };
 
 export default AppContainer = createContainer(() => {
+	Meteor.subscribe('garments');
+	Meteor.subscribe('outfits');
   return {
     garments: Garments.find({}).fetch(),
     outfits: Outfit.find({}).fetch()

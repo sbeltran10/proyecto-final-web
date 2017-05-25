@@ -113,3 +113,5 @@ export default class Garments extends Component {
     );
   }
 }
+Meteor.subscribe('garments');
+	Meteor.subscribe('outfits');

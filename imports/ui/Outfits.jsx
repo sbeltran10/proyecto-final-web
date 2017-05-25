@@ -33,6 +33,7 @@ export default class Outfits extends Component {
     }
 
     filterWardrobeByType(garType, slot) {
+        console.log(Meteor.userId());
         var result = Garments.find({ type: garType }).fetch();
         this.setState({ wardrobeGarments: result })
         for (var i = 0; i < 10; i++) {
@@ -129,10 +130,10 @@ export default class Outfits extends Component {
     }
 
     handleInputChange(event) {
-		this.setState({
-			[event.target.name]: event.target.value
-		});
-	}
+        this.setState({
+            [event.target.name]: event.target.value
+        });
+    }
 
     render() {
         var wardrobeSlots = [];
@@ -216,3 +217,5 @@ export default class Outfits extends Component {
     }
 }
 
+Meteor.subscribe('garments');
+Meteor.subscribe('outfits');

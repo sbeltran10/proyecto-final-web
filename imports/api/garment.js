@@ -20,7 +20,7 @@ Garments.schema = new SimpleSchema({
 
 if (Meteor.isServer) {
     Meteor.publish('garments', function garmentsPublication() {
-        return garments.find({ user: this.userId }, {
+        return Garments.find({ user: this.userId }, {
             fields: {
                 name: 1,
                 image: 1,
