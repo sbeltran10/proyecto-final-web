@@ -1,5 +1,24 @@
+.headers-edit{
+    text-align: center;
+    margin:1em
+}
+
+.tittle-wardrobe, .tittle-outift{
+    color: black;
+    font-size: 4em;
+}
+
 .center-outift{
 
+}
+
+.wardrobe-slot-empty{
+    border: 0.1em solid black;
+    margin: 0.5em;
+    border-radius: 10%;
+    background-color: grey;
+    height: 9em;
+    opacity: 0.2;
 }
 
 .outfit-outline-edit{
@@ -8,7 +27,7 @@
    background-size:contain;
 }
 
-.slot-cabeza-edit, .slot-torso-edit, .slot-piernas-edit, .slot-pies-edit, .slot-accesorio1-edit, .slot-accesorio2-edit{
+.slot-head-edit, .slot-torso-edit, .slot-legs-edit, .slot-feet-edit, .slot-accessory1-edit, .slot-accessory2-edit{
     border: 0.1em solid black;
     margin: 0.5em;
     border-radius: 10%;
@@ -17,11 +36,11 @@
     opacity: 0.2;
 }
 
-.slot-cabeza-edit:hover, .slot-torso-edit:hover, .slot-piernas-edit:hover, .slot-pies-edit:hover, .slot-accesorio1-edit:hover, .slot-accesorio2-edit:hover{
+.slot-head-edit:hover, .slot-torso-edit:hover, .slot-legs-edit:hover, .slot-feet-edit:hover, .slot-accessory1-edit:hover, .slot-accessory2-edit:hover{
     opacity: 0.4;
 }
 
-.slot-cabeza-edit{
+.slot-head-edit{
     height: 8em
 }
 
@@ -29,23 +48,35 @@
     height: 16em
 }
 
-.slot-piernas-edit{
+.slot-legs-edit{
     height: 22em
 }
 
-.slot-pies-edit{
+.slot-feet-edit{
     height: 8em
 }
 
-.slot-accesorio1-edit,.slot-accesorio2-edit{
+.accessory-back1{
+    background: url('/images/watch.png');
+}
+
+.accessory-back2{
+    background: url('/images/pendant.png');
+}
+
+.accessory-back1, .accessory-back2{
+    background-repeat:no-repeat;
+   background-size:contain;
+   background-position:center;
+}
+
+
+.slot-accessory1-edit,.slot-accessory2-edit{
      height: 8em;
+
 }
 
 .filled{
     opacity: 1;
     background-color: white;
-}
-
-.filled:hover{
-
 }

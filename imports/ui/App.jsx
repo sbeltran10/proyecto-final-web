@@ -23,7 +23,7 @@ import bootstrap from './js/bootstrap.min.js';
 import jsStarbox from './js/jstarbox.js';
 import Modal from './Modal.jsx';
 import Garments from './Garments.jsx';
-import Pintas from './Pintas.jsx';
+import Outfits from './Outfits.jsx';
 
 export class App extends Component {
   constructor(props) {
@@ -234,7 +234,7 @@ export class App extends Component {
       	</div>
       </div>}
 			{this.state.conjuntos?
-			<Pintas/>:
+			<Outfits/>:
 			<div></div>}
       <Modal login={this.login.bind(this)}/>
       </div>

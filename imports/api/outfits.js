@@ -1,23 +1,23 @@
 import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
 
-export const Pintas = new Mongo.Collection('pintas', { idGeneration: 'MONGO' });
+export const Outfits = new Mongo.Collection('outfits', { idGeneration: 'MONGO' });
 
-Pintas.schema = new SimpleSchema({
-    nombre: { type: String },
-    usuario: { type: String },
-    compartida: { type: Boolean },
-    descripcion: { type: String },
-    prendas: { type: [Object] }
+Outfits.schema = new SimpleSchema({
+    name: { type: String },
+    user: { type: String },
+    shared: { type: Boolean },
+    description: { type: String },
+    garments: { type: [Object] }
 });
 
 // Se encarga de realizar todas las verificaciones usando el esquema definido previamente
-//Pintas.attachSchema(Pintas.schema);
+//Outfits.attachSchema(Outfits.schema);
 
 
 if (Meteor.isServer) {
-    Meteor.publish('pintas', function pintasPublication() {
-        return Pintas.find({}, {
+    Meteor.publish('outfits', function outfitsPublication() {
+        return Outfits.find({}, {
             fields: {
                 nombre: 1,
                 usuario: 1,
@@ -31,11 +31,11 @@ if (Meteor.isServer) {
 
 
 Meteor.methods({
-    'pintas.insert'(pinta) {
+    'outfits.insert'(pinta) {
         // Verificacion de logeo y rol
         if (!Meteor.user()) {
             throw new Meteor.Error('not-authorized');
         }
-        return Pintas.insert(pinta);
+        return Outfits.insert(pinta);
     },
 });
