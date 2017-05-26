@@ -9,12 +9,25 @@ export default class Garment extends Component {
 
 
   deleteGarment() {
-    Meteor.call('garments.remove', this.props.garment._id, function (err, result) {
-      if (err) {
-        console.log(err);
-      }
-      else {
-      }
+    var a= this;
+    swal({
+      title: "Are you sure?",
+      text: "You will not be able to recover this Garment!",
+      type: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#DD6B55",
+      confirmButtonText: "Yes, delete it!",
+      closeOnConfirm: false
+    },
+    function(){
+      swal("Deleted!", "Your garment has been deleted.", "success");
+      Meteor.call('garments.remove', a.props.garment._id, function (err, result) {
+        if (err) {
+          console.log(err);
+        }
+        else {
+        }
+      });
     });
   }
 

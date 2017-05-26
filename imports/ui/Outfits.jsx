@@ -5,6 +5,7 @@ import { Outfit } from '../api/outfit.js';
 import styles from "../assets/css/outfits.css";
 import '../assets/plugins/jquery-1.11.3.min.js';
 import OutfitComponent from './Outfit.jsx';
+import sweetAlert from 'sweetAlert';
 
 export default class Outfits extends Component {
 
@@ -148,6 +149,7 @@ export default class Outfits extends Component {
 
         if (this.state.hat) {
             newGarments.push(this.state.hat);
+            contador = contador + 1;
         }
         if (this.state.shirt) {
             newGarments.push(this.state.shirt);
@@ -163,11 +165,13 @@ export default class Outfits extends Component {
         }
         if (this.state.accessory1) {
             newGarments.push(this.state.accessory1);
+            contador = contador + 1;
         }
         if (this.state.accessory2) {
             newGarments.push(this.state.accessory2);
+            contador = contador + 1;
         }
-        if (contador > 2) {
+        if (contador > 1) {
             newOutfit.garments = newGarments;
             this.resetOutfitBuilder();
             Meteor.call('outfits.insert', newOutfit, function (err, result) {
@@ -181,11 +185,11 @@ export default class Outfits extends Component {
                         },
                             'slow');
                     });
-                    alert("Your outfit have been created");
+                    swal("Great!", "Your outfit have been created", "success");
                 }
             });
         } else {
-            alert("You have to choose at least a shirt, pants and shoes to create an outfit");
+            swal("Oops!", "You have to choose at least a shirt, pants and shoes to create an outfit", "error");
         }
     }
 
