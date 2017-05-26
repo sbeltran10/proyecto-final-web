@@ -48,12 +48,12 @@ export default class Outfit extends Component {
 
   render() {
     return (
-      <div className="product-grid-outfit">
+      <div className="product-grid-outfit" style={{background:'white'}}>
         <div className="product-grid-head">
           <center><h3>{this.props.outfit.name}</h3>
           </center>
         </div>
-        <div className="product-pic">
+        <div className="product-pic" >
           <div className="row">
           <div className="col-md-4"></div>
           <div className="col-md-5 outfit-outline">
