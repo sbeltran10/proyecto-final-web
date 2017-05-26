@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Meteor } from "meteor/meteor";
 import { Garments } from '../api/garment.js';
 import { Outfit } from '../api/outfit.js';
-import styles from "./css/outfits.css";
+import styles from "../assets/css/outfits.css";
 import '../assets/plugins/jquery-1.11.3.min.js';
 import OutfitComponent from './Outfit.jsx';
 import jquery from './js/jquery.js';
@@ -44,7 +44,6 @@ export default class Outfits extends Component {
     }
 
     filterWardrobeByType(garType, slot) {
-        console.log(Meteor.userId());
         var result = Garments.find({ type: garType }).fetch();
         this.setState({ wardrobeGarments: result })
         for (var i = 0; i < 10; i++) {
@@ -111,7 +110,6 @@ export default class Outfits extends Component {
         if (this.state.accessory2) {
             newGarments.push(this.state.accessory2);
         }
-
         if (contador > 2) {
             newOutfit.garments = newGarments;
 
@@ -135,10 +133,11 @@ export default class Outfits extends Component {
         }
     }
 
+
     renderOutfits() {
         return this.props.outfits.map((outfit, index) => {
             if (outfit.user === Meteor.userId()) {
-                return (<OutfitComponent key={index} outfit={outfit} />);
+                return (<OutfitComponent key={index} outfit={outfit} user="true" />);
             } else {
                 return '';
             }
@@ -192,7 +191,7 @@ export default class Outfits extends Component {
                     <h4>Or see the outfits that you have create at the bottom of the page.</h4>
                 </div>
                 <br />
-                <form id="newGarmentForm" onSubmit={this.saveOutfit.bind(this)}>
+                <form id="newOutfitForm" onSubmit={this.saveOutfit.bind(this)}>
                     <div className="row">
                         <div className="col-md-4">
                             <div className="form-group">
