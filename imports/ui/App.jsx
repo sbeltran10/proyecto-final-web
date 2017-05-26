@@ -13,6 +13,7 @@ import OutfitComponent from './Outfit.jsx';
 import GarmentsComponent from './Garments.jsx';
 import {Garments} from '../api/garment.js';
 import {Outfit} from '../api/outfit.js';
+import sweetAlert from 'sweetAlert';
 
 export class App extends Component {
   constructor(props) {

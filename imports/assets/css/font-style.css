@@ -114,3 +114,8 @@ p,h5,h4{
   font-family:'Avenir LT Std 45 Book';
 	font-weight:normal;
 }
+
+strong {
+  font-family:'Avenir LT Std 95 Black';
+	font-weight:normal;
+}

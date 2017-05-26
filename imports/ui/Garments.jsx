@@ -47,8 +47,8 @@ export default class Garments extends Component {
            $el.wrap('<form>').closest('form').get(0).reset();
            $el.unwrap();
            var preview = document.querySelector('img');
-           preview.src="";
-           alert("Your Garment have been created");
+           preview.src="./images/imagenFondo.png";
+           swal("Great!", "Your Garment have been created", "success");
            jQuery(document).ready(function ($) {$('html,body').animate({
              scrollTop: $("#yourGarments").offset().top
            },
