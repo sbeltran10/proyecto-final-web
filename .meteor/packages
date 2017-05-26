@@ -21,3 +21,6 @@ react-meteor-data
 accounts-password
 aldeed:simple-schema
 d3js:d3
+practicalmeteor:mocha
+xolvio:cleaner
+aldeed:collection2

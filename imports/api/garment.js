@@ -1,5 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
+import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 
 export const Garments = new Mongo.Collection('garments', { idGeneration: 'MONGO' });
 
@@ -9,15 +10,12 @@ Garments.schema = new SimpleSchema({
     image: { type: String },
     user: { type: String },
     type: { type: String },
-    tag: { type: [String] },
+    tag: { type: String },
     retailer: { type: String }
 
 });
 
-
-// Se encarga de realizar todas las verificaciones usando el esquema definido previamente
-//Prendas.attachSchema(Historias.schema);
-
+Garments.attachSchema(Garments.schema);
 
 if (Meteor.isServer) {
     Meteor.publish('garments', function garmentsPublication() {
@@ -35,19 +33,16 @@ if (Meteor.isServer) {
     });
     Meteor.methods({
         'garments.insert'(garment) {
-            // Verificacion de logeo y rol
             if (!Meteor.user()) {
                 throw new Meteor.Error('not-authorized');
             }
-            console.log(new Date().getTime());
-            try {
-                garment.user = Meteor.userId();
+            try {;
+                garment.user = Meteor.user()._id;
                 if (Meteor.user().profile.retailer)
                     garment.retailer = Meteor.user().profile.retailer;
-                Garments.insert(garment);
+                return Garments.insert(garment);
             }
             catch (err) {
-                console.log(err);
                 throw new Meteor.Error(err);
             }
         },

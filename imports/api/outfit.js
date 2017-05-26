@@ -1,20 +1,20 @@
 import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
+import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 
 export const Outfit = new Mongo.Collection('outfits', { idGeneration: 'MONGO' });
 
 Outfit.schema = new SimpleSchema({
     name: { type: String },
     user: { type: String },
-    shared: { type: Boolean },
-    description: { type: String },
+    shared: { type: Boolean,optional: true },
+    description: { type: String,optional: true },
     garments: { type: [Object] },
     createdAt: { type: Date },
-    rating: { type: Number }
+    rating: { type: Number,optional: true }
 });
 
-// Se encarga de realizar todas las verificaciones usando el esquema definido previamente
-//Outfits.attachSchema(Outfits.schema);
+Outfit.attachSchema(Outfit.schema);
 
 
 if (Meteor.isServer) {
@@ -35,11 +35,10 @@ if (Meteor.isServer) {
 
 Meteor.methods({
     'outfits.insert'(outfit) {
-        // Verificacion de logeo y rol
         if (!Meteor.user()) {
             throw new Meteor.Error('not-authorized');
         }
-        outfit.user = Meteor.userId();
+        outfit.user = Meteor.user()._id;
         return Outfit.insert(outfit);
     },
     'outfits.remove'(outfitId) {
