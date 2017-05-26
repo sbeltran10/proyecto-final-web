@@ -49,6 +49,11 @@ export default class Garments extends Component {
            var preview = document.querySelector('img');
            preview.src="";
            alert("Your Garment have been created");
+           jQuery(document).ready(function ($) {$('html,body').animate({
+             scrollTop: $("#yourGarments").offset().top
+           },
+             'slow');
+           });
         }
       });
 
@@ -111,7 +116,7 @@ export default class Garments extends Component {
         <br />
         <br />
         <h3>Your Garments</h3>
-        <div className="row">
+        <div id="yourGarments" className="row">
             {this.renderGarments()}
         </div>
       </div>
