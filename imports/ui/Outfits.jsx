@@ -22,10 +22,46 @@ export default class Outfits extends Component {
         }
     }
 
-    resetOutfitBuilder(){
+    resetOutfitBuilder() {
         for (var i = 0; i < 10; i++) {
-            
+            var currentInvSlot = document.getElementById('garment' + i);
+            console.log(currentInvSlot);
+            currentInvSlot.className = "wardrobe-slot-empty";
+            currentInvSlot.style.backgroundImage = "";
+            currentInvSlot.pointerEvents = 'none';
+
+            $("#popover" + i).popover('disable');
         }
+
+        if (this.state.hat) {
+            this.resetSlot("hat");
+        }
+        if (this.state.shirt) {
+            this.resetSlot("shirt");
+        }
+        if (this.state.pants) {
+            this.resetSlot("pants");
+        }
+        if (this.state.shoes) {
+            this.resetSlot("shoes");
+        }
+        if (this.state.accessory1) {
+            this.resetSlot("accessory1");
+        }
+        if (this.state.accessory2) {
+            this.resetSlot("accessory2");
+        }
+
+        this.setState({
+            hat: null,
+            shirt: null,
+            pants: null,
+            shoes: null,
+            accessory1: null,
+            accessory2: null,
+            selected: null,
+            name: ""
+        });
     }
 
     changeSlot(newSlot) {
@@ -46,19 +82,22 @@ export default class Outfits extends Component {
         for (var i = 0; i < 10; i++) {
             var warDroveItem = document.getElementById("garment" + i);
             if (result[i]) {
-                var popupText= "<strong>Tag: </strong>" + result[i].tag;
-                if(result[i].retailer&&result[i].retailer!=="none"){
-                    popupText+= "</br><strong>Retailer: </strong>"+result[i].retailer;
+                var popupText = "<strong>Tag: </strong>" + result[i].tag;
+                if (result[i].retailer && result[i].retailer !== "none") {
+                    popupText += "</br><strong>Retailer: </strong>" + result[i].retailer;
                 }
-                $("#popover" + i).attr("data-original-title","<strong>"+result[i].name+"</strong>");
-                $("#popover" + i).attr("data-content",popupText);
-                $("#popover" + i).attr("data-html","true");
+
+                $("#popover" + i).attr("data-original-title", "<strong>" + result[i].name + "</strong>");
+                $("#popover" + i).attr("data-content", popupText);
+                $("#popover" + i).attr("data-html", "true");
                 $("#popover" + i).popover();
                 $("#popover" + i).popover({ trigger: "hover" });
+                $("#popover" + i).popover('enable');
                 var newGarment = JSON.parse(JSON.stringify(result[i]));
                 warDroveItem.className = "wardrobe-slot-item";
                 warDroveItem.style.backgroundImage = 'url(' + newGarment.image + ')';
                 var ctx1 = this;
+                warDroveItem.pointerEvents = 'auto';
                 warDroveItem.onclick = (function () {
                     var ctx2 = ctx1
                     var cNewGarment = newGarment;
@@ -83,6 +122,13 @@ export default class Outfits extends Component {
         slotToUpdate.style.backgroundPosition = "center";
         slotToUpdate.style.backgroundImage = 'url(' + garment.image + ')';
         slotToUpdate.style.backgroundSize = "contain";
+    }
+
+    resetSlot(slot){
+        var slotToUpdate = document.getElementsByClassName('slot-' + slot + '-edit')[0];
+        slotToUpdate.className = "slot-"+slot+"-edit";
+        slotToUpdate.setAttribute("data-toggle", "popover");
+        slotToUpdate.style.backgroundImage = "";
     }
 
     saveOutfit(event) {
@@ -118,7 +164,7 @@ export default class Outfits extends Component {
         }
         if (contador > 2) {
             newOutfit.garments = newGarments;
-
+            this.resetOutfitBuilder();
             Meteor.call('outfits.insert', newOutfit, function (err, result) {
                 if (err) {
                     console.log(err);
@@ -131,7 +177,6 @@ export default class Outfits extends Component {
                             'slow');
                     });
                     alert("Your outfit have been created");
-
                 }
             });
         } else {
@@ -181,7 +226,7 @@ export default class Outfits extends Component {
         for (var i = 0; i < 10; i++) {
             wardrobeSlots.push(
                 <div className="col-md-6" key={i}>
-                    <a id={"popover" + i} className="btn popoveritem" href="#" rel="popover" data-placement="bottom" data-trigger="hover">
+                    <a id={"popover" + i} className="popoveritem" rel="popover" data-placement="bottom" data-trigger="hover">
                         <div className="wardrobe-slot-empty" id={"garment" + i}></div>
                     </a>
                 </div>
