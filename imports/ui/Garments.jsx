@@ -109,7 +109,7 @@ export default class Garments extends Component {
                   <option value="leather">Leather</option>
                 </select>
               </div>
-              <button type="submit" className="btn btn-default btn-outline">save</button>
+              <button type="submit" className="btn btn-default btn-outline">Save</button>
             </div>
           </form>
         </div>
