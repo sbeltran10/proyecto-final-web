@@ -36,3 +36,11 @@
 .letra20 {
   font-size: 20px;
 }
+
+.bgimg {
+    background-image: url('./images/bg2.png');
+}
+
+.bgGrey{
+  background: rgba(193, 193, 193, 1);
+}

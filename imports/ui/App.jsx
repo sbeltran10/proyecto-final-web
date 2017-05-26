@@ -102,7 +102,7 @@ export class App extends Component {
       {this.state.prendas?<GarmentsComponent garments={this.props.garmentsOwn}/>:
       this.state.conjuntos?
 			<OutfitsComponent outfits={this.props.outfits}/>:
-      <div>
+      <div className="bgimg">
         <div className="mid-header">
           <div className="container">
             <div className="mid-grid-left">
@@ -118,7 +118,6 @@ export class App extends Component {
               <div className="container">
                 <div className="row">
                   <div className="col-md-6">
-                      <img src="./images/image-sprit.png"/>
                   </div>
                   <div className="col-md-6">
                     <h2>What is this page about?</h2>
@@ -140,8 +139,8 @@ export class App extends Component {
         <div className="content">
           <div className="container">
             <div className="row">
-              <div className="col-md-6">
-                <h2>Latest Outfits</h2>
+              <div className="col-md-3">
+                <h2 className="bgGrey">Latest Outfits</h2>
               </div>
             </div>
           </div>
