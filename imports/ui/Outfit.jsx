@@ -61,67 +61,70 @@ export default class Outfit extends Component {
 
   render() {
     return (
-      <div className="product-grid-outfit" style={{background:'white'}}>
-        <div className="product-grid-head">
-          <center><h3>{this.props.outfit.name}</h3>
-          </center>
-        </div>
-        <div className="product-pic" >
-          <div className="row">
-          <div className="col-md-4"></div>
-          <div className="col-md-5 outfit-outline">
+      <div className="col-md-4">
+        <div className="panel panel-default">
+          <div className="panel-heading">
+            <h3 style={{ textAlign: 'center' }}>
+              {this.props.outfit.name}
+            </h3>
+          </div>
+          <div className="panel-body" style={{background:'rgba(192,192,192,1)'}}>
             <div className="row">
-              <div className="col-md-3"></div>
+            <div className="col-md-3"></div>
               <div className="col-md-6">
-                <div className="slot-hat" id={"hat" + this.props.outfit._id._str}></div>
+              <div className="row">
+                <div className="col-md-3"></div>
+                <div className="col-md-6">
+                  <div className="slot-hat" id={"hat" + this.props.outfit._id._str}></div>
+                </div>
+                <div className="col-md-3"></div>
               </div>
-              <div className="col-md-3"></div>
+              <div className="row">
+                <div className="col-md-12">
+                  <div className="slot-shirt" id={"shirt" + this.props.outfit._id._str}></div>
+                </div>
+              </div>
+              <div className="row">
+                <div className="col-md-2"></div>
+                <div className="col-md-7">
+                  <div className="slot-pants" id={"pants" + this.props.outfit._id._str}></div>
+                </div>
+              </div>
+              <div className="row">
+                <div className="col-md-2"></div>
+                <div className="col-md-7">
+                  <div className="slot-shoes" id={"shoes" + this.props.outfit._id._str}></div>
+                </div>
+              </div>
             </div>
+            <div className="col-md-3 accesories">
+              <div className="row">
+                <div className="col-md-10 accessory-back1">
+                  <div className="slot-accessory1" id={"accessory1" + this.props.outfit._id._str}></div>
+                </div>
+              </div>
+              <div className="row">
+                <div className="col-md-10 accessory-back2">
+                  <div className="slot-accessory2" id={"accessory2" + this.props.outfit._id._str}></div>
+                </div>
+              </div>
+            </div>
+            <p>
+              {this.props.outfit.description}
+            </p>
+            </div>
+            <br/>
+            {this.props.user?
             <div className="row">
-              <div className="col-md-12">
-                <div className="slot-shirt" id={"shirt" + this.props.outfit._id._str}></div>
-              </div>
-            </div>
-            <div className="row">
-              <div className="col-md-2"></div>
-              <div className="col-md-7">
-                <div className="slot-pants" id={"pants" + this.props.outfit._id._str}></div>
-              </div>
-            </div>
-            <div className="row">
-              <div className="col-md-2"></div>
-              <div className="col-md-7">
-                <div className="slot-shoes" id={"shoes" + this.props.outfit._id._str}></div>
-              </div>
-            </div>
+              <center>
+                <button type="button" className="btn btn-danger" onClick={this.deleteGarment.bind(this)}>
+                  <i className="fa fa-trash" aria-hidden="true"></i> Delete
+                </button>
+              </center>
+            </div>:''
+            }
+            <br/>
           </div>
-          <div className="col-md-3 accesories">
-            <div className="row">
-              <div className="col-md-10 accessory-back1">
-                <div className="slot-accessory1" id={"accessory1" + this.props.outfit._id._str}></div>
-              </div>
-            </div>
-            <div className="row">
-              <div className="col-md-10 accessory-back2">
-                <div className="slot-accessory2" id={"accessory2" + this.props.outfit._id._str}></div>
-              </div>
-            </div>
-          </div>
-          <p>
-            {this.props.outfit.description}
-          </p>
-          </div>
-          <br/>
-          {this.props.user?
-          <div className="row">
-            <center>
-              <button type="button" className="btn btn-danger" onClick={this.deleteGarment.bind(this)}>
-                <i className="fa fa-trash" aria-hidden="true"></i> Delete
-              </button>
-            </center>
-          </div>:''
-          }
-          <br/>
         </div>
       </div>
     );
