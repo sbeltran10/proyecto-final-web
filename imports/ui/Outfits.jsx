@@ -94,7 +94,12 @@ export default class Outfits extends Component {
                 $("#popover" + i).popover({ trigger: "hover" });
                 $("#popover" + i).popover('enable');
                 var newGarment = JSON.parse(JSON.stringify(result[i]));
-                warDroveItem.className = "wardrobe-slot-item";
+                if (result[i].retailer && result[i].retailer !== "none") {
+                    warDroveItem.className = "wardrobe-slot-item retailer";
+                }
+                else {
+                    warDroveItem.className = "wardrobe-slot-item";
+                }
                 warDroveItem.style.backgroundImage = 'url(' + newGarment.image + ')';
                 var ctx1 = this;
                 warDroveItem.pointerEvents = 'auto';
@@ -124,9 +129,9 @@ export default class Outfits extends Component {
         slotToUpdate.style.backgroundSize = "contain";
     }
 
-    resetSlot(slot){
+    resetSlot(slot) {
         var slotToUpdate = document.getElementsByClassName('slot-' + slot + '-edit')[0];
-        slotToUpdate.className = "slot-"+slot+"-edit";
+        slotToUpdate.className = "slot-" + slot + "-edit";
         slotToUpdate.setAttribute("data-toggle", "popover");
         slotToUpdate.style.backgroundImage = "";
     }
@@ -238,8 +243,8 @@ export default class Outfits extends Component {
                 <div className="row">
                     <h2>Create your own outfits</h2>
                     <br />
-                    <h4>Click a square in the Outfit Section and then choose a garment of your Wardrobe that will go there.</h4>
-                    <h4>Or see the outfits that you have create at the bottom of the page.</h4>
+                    <h4>Click a slot in the Outfit Section and then choose a garment of your Wardrobe that you would like to try on that slot.</h4>
+                    <h4>You can also see your created outfits at the bottom of the page.</h4>
                 </div>
                 <br />
                 <form id="newOutfitForm" onSubmit={this.saveOutfit.bind(this)}>

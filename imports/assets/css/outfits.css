@@ -168,3 +168,11 @@
 .popoveritem{
     display: inline
 }
+
+.retailer{
+    border: 0.15em solid orange;
+}
+
+.retailer:hover{
+    border: 0.15em solid orange;
+}
