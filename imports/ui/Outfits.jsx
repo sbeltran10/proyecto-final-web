@@ -33,7 +33,6 @@ export default class Outfits extends Component {
     }
 
     filterWardrobeByType(garType, slot) {
-        console.log(Meteor.userId());
         var result = Garments.find({ type: garType }).fetch();
         this.setState({ wardrobeGarments: result })
         for (var i = 0; i < 10; i++) {
@@ -108,13 +107,13 @@ export default class Outfits extends Component {
                   console.log(err);
               }
               else {
+                $('#newOutfitForm')[0].reset();
                 jQuery(document).ready(function ($) {$('html,body').animate({
                   scrollTop: $("#yourOutfits").offset().top
                 },
                   'slow');
                 });
                 alert("Your outfit have been created");
-
               }
           });
         } else {
@@ -177,7 +176,7 @@ export default class Outfits extends Component {
                   <h4>Or see the outfits that you have create at the bottom of the page.</h4>
                 </div>
                 <br/>
-                <form id="newGarmentForm" onSubmit={this.saveOutfit.bind(this)}>
+                <form id="newOutfitForm" onSubmit={this.saveOutfit.bind(this)}>
                     <div className="row">
                         <div className="col-md-4">
                             <div className="form-group">

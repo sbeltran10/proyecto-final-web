@@ -42,8 +42,13 @@ export default class Garments extends Component {
           console.log(err);
         }
         else {
-          $('#newGarmentForm').reset();
-          console.log("agregado");
+           $('#newGarmentForm')[0].reset();
+           var $el = $('#file');
+           $el.wrap('<form>').closest('form').get(0).reset();
+           $el.unwrap();
+           var preview = document.querySelector('img');
+           preview.src="";
+           alert("Your Garment have been created");
         }
       });
 
@@ -69,7 +74,7 @@ export default class Garments extends Component {
               <br />
               <div className="form-group">
                 <label className="btn btn-default btn-file" style={{ marginLeft: 10 }}>
-                  Browse Image <input type="file" name="image" onChange={this.previewFile.bind(this)} required />
+                  Browse Image <input id="file" type="file" name="image" onChange={this.previewFile.bind(this)} required />
                 </label>
               </div>
             </div>
