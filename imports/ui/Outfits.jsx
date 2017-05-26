@@ -5,8 +5,6 @@ import { Outfit } from '../api/outfit.js';
 import styles from "../assets/css/outfits.css";
 import '../assets/plugins/jquery-1.11.3.min.js';
 import OutfitComponent from './Outfit.jsx';
-import jquery from './js/jquery.js';
-import bootstrap from './js/bootstrap.min.js';
 
 export default class Outfits extends Component {
 
@@ -23,13 +21,12 @@ export default class Outfits extends Component {
             name: ""
         }
     }
-    componentDidMount() {
-        jquery(document).ready(function () {
-            jquery('#popover0').popover();
-            jquery('#popover0').popover({ trigger: "hover" });
-        });
-    }
 
+    resetOutfitBuilder(){
+        for (var i = 0; i < 10; i++) {
+            
+        }
+    }
 
     changeSlot(newSlot) {
         if (newSlot.startsWith("accessory")) {
@@ -49,6 +46,15 @@ export default class Outfits extends Component {
         for (var i = 0; i < 10; i++) {
             var warDroveItem = document.getElementById("garment" + i);
             if (result[i]) {
+                var popupText= "<strong>Tag: </strong>" + result[i].tag;
+                if(result[i].retailer&&result[i].retailer!=="none"){
+                    popupText+= "</br><strong>Retailer: </strong>"+result[i].retailer;
+                }
+                $("#popover" + i).attr("data-original-title","<strong>"+result[i].name+"</strong>");
+                $("#popover" + i).attr("data-content",popupText);
+                $("#popover" + i).attr("data-html","true");
+                $("#popover" + i).popover();
+                $("#popover" + i).popover({ trigger: "hover" });
                 var newGarment = JSON.parse(JSON.stringify(result[i]));
                 warDroveItem.className = "wardrobe-slot-item";
                 warDroveItem.style.backgroundImage = 'url(' + newGarment.image + ')';
@@ -175,8 +181,8 @@ export default class Outfits extends Component {
         for (var i = 0; i < 10; i++) {
             wardrobeSlots.push(
                 <div className="col-md-6" key={i}>
-                    <a id={"popover" + i} className="btn popoveritem" href="#" data-content="Popover with data-trigger" rel="popover" data-placement="bottom" data-original-title="Title" data-trigger="hover">
-                        <div className="wardrobe-slot-empty" id={"garment" + i}></div> HEREEEEEEEEEEEEE
+                    <a id={"popover" + i} className="btn popoveritem" href="#" rel="popover" data-placement="bottom" data-trigger="hover">
+                        <div className="wardrobe-slot-empty" id={"garment" + i}></div>
                     </a>
                 </div>
             );

@@ -70,13 +70,13 @@ export default class Outfit extends Component {
               </div>
             </div>
             <div className="row">
-              <div className="col-md-1"></div>
+              <div className="col-md-2"></div>
               <div className="col-md-7">
                 <div className="slot-pants" id={"pants" + this.props.outfit._id._str}></div>
               </div>
             </div>
             <div className="row">
-              <div className="col-md-1"></div>
+              <div className="col-md-2"></div>
               <div className="col-md-7">
                 <div className="slot-shoes" id={"shoes" + this.props.outfit._id._str}></div>
               </div>
