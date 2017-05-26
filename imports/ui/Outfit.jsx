@@ -31,6 +31,17 @@ export default class Outfit extends Component {
 
   }
 
+  deleteGarment() {
+    Meteor.call('outfits.remove', this.props.outfit._id, function (err,result) {
+      if (err) {
+        console.log(err);
+      }
+      else {
+      }
+    });
+  }
+
+
   addButton() {
     return (<button className="btn btn-default" onClick={this.vote.bind(this)}>Votar</button>);
   }
@@ -88,10 +99,12 @@ export default class Outfit extends Component {
           </p>
           </div>
           <br/>
-          {this.props.ap?
+          {this.props.user?
           <div className="row">
             <center>
-                {this.addButton()}
+              <button type="button" className="btn btn-danger" onClick={this.deleteGarment.bind(this)}>
+                <i className="fa fa-trash" aria-hidden="true"></i> Delete
+              </button>
             </center>
           </div>:''
           }

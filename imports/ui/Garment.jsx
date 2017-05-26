@@ -7,6 +7,17 @@ export default class Garment extends Component {
     super(props);
   }
 
+
+  deleteGarment() {
+    Meteor.call('garments.remove', this.props.garment._id, function (err,result) {
+      if (err) {
+        console.log(err);
+      }
+      else {
+      }
+    });
+  }
+
   render() {
     return (
       <div className="col-md-3">
@@ -26,6 +37,9 @@ export default class Garment extends Component {
                 <strong>Tag: </strong>{this.props.garment.tag}
               </h4>
             </center>
+            <button type="button" className="btn btn-danger" onClick={this.deleteGarment.bind(this)}>
+              <i className="fa fa-trash" aria-hidden="true"></i> Delete
+            </button>
           </div>
         </div>
       </div>

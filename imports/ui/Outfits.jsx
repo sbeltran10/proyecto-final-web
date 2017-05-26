@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Meteor } from "meteor/meteor";
 import { Garments } from '../api/garment.js';
 import { Outfit } from '../api/outfit.js';
-import styles from "./css/outfits.css";
+import styles from "../assets/css/outfits.css";
 import '../assets/plugins/jquery-1.11.3.min.js';
 import OutfitComponent from './Outfit.jsx';
 
@@ -125,7 +125,7 @@ export default class Outfits extends Component {
     renderOutfits(){
       return this.props.outfits.map((outfit,index) => {
         if(outfit.user===Meteor.userId()) {
-          return (<OutfitComponent key={index} outfit={outfit}/>);
+          return (<OutfitComponent key={index} outfit={outfit} user="true"/>);
         } else {
           return '';
         }

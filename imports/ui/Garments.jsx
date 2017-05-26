@@ -52,7 +52,7 @@ export default class Garments extends Component {
 
   renderGarments() {
     return this.props.garments.map((garment,index) => {
-      return (<Garment key={index} garment={garment}/>);
+      return (<Garment key={index} garment={garment} />);
     });
   }
 
