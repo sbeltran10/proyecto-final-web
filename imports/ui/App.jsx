@@ -87,11 +87,12 @@ export class App extends Component {
           <div className="header-bottom megamenu" style={{background: 'black'}}>
   					<div className="wrap">
   						<ul className="skyblue"><li className="showhide" style={{display: 'none'}}><span className="title">Menu</span><span className="icon1"></span><span className="icon2"></span></li>
-                <li className="grid letra20" style={{display: 'inline-block'}} onClick={this.irInicio.bind(this)}><a className="color2" href="#">Home</a>
+                <li className="grid letra20" style={{display: 'inline-block'}} onClick={this.irInicio.bind(this)}>
+                  {!this.state.prendas && !this.state.conjuntos ?<a style={{background:'white',color:'black'}} href="#">Home</a>:<a className="color2" href="#">Home</a>}
                 </li>
-                <li className="grid letra20" style={{display: 'inline-block'}} onClick={this.irPrendas.bind(this)}><a className="color2" href="#">Garments</a>
+                <li className="grid letra20" style={{display: 'inline-block'}} onClick={this.irPrendas.bind(this)}>{this.state.prendas?<a style={{background:'white',color:'black'}} href="#">Garments</a>:<a className="color2" href="#">Garments</a>}
   							</li>
-  					  	<li className="grid letra20" style={{display: 'inline-block'}} onClick={this.irOutfits.bind(this)}><a className="color4" href="#">Outfits</a>
+  					  	<li className="grid letra20" style={{display: 'inline-block'}} onClick={this.irOutfits.bind(this)}>{this.state.conjuntos?<a style={{background:'white',color:'black'}} href="#">Outfits</a>:<a className="color4" href="#">Outfits</a>}
   							</li>
                 <li id="logout" className="letra20" style={{float: 'right',display: 'inline-block', float: 'right'}} onClick={this.logout.bind(this)} ><a href="#">Logout</a></li>
   						</ul>
