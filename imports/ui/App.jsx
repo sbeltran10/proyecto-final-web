@@ -3,6 +3,7 @@ import {PropTypes} from "prop-types";
 import { Meteor } from "meteor/meteor";
 import { createContainer } from "meteor/react-meteor-data";
 import styles from '../assets/css/magnific-popup.css';
+import styles1 from '../assets/css/font-style.css';
 import styles2 from '../assets/css/style.css';
 import styles3 from '../assets/css/personal.css';
 import script1 from '../assets/js/script.js';

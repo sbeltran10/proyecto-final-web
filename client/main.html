@@ -28,8 +28,24 @@
           a.appendChild(r);
       })(window,document,'//static.hotjar.com/c/hotjar-','.js?sv=');
   </script>
+  <script type='text/javascript'>
+    var imageID=false;
+    function changeimage(every_seconds){
+        //change the image
+        if(imageID){
+            document.getElementById("myimage").css("background-image","url('./images/bg2.png');");
+            imageID=true;
+        }
+        else if(imageID){
+            document.getElementById("myimage").css("background-image","url('./images/bg3.png');");
+            imageID=false;
+        }
+        //call same function again for x of seconds
+        setTimeout("changeimage("+every_seconds+")",((every_seconds)*1000));
+    }
+  </script>
 </head>
 
-<body>
+<body onload='changeimage(3)'>
   <div className="container-fluid" id="render-target"></div>
   </body>
