@@ -114,7 +114,7 @@ export class App extends Component {
   				</div>
           }
         </div>
-      {this.state.prendas?<GarmentsComponent garments={this.props.garments}/>:
+      {this.state.prendas?<GarmentsComponent garments={this.props.garmentsOwn}/>:
       this.state.conjuntos?
 			<OutfitsComponent outfits={this.props.outfits}/>:
       <div>
@@ -183,6 +183,7 @@ export default AppContainer = createContainer(() => {
 	Meteor.subscribe('garments');
 	Meteor.subscribe('outfits');
   return {
+		garmentsOwn: Garments.find({user: Meteor.userId()}).fetch(),
     garments: Garments.find({}).fetch(),
     outfits: Outfit.find({}).fetch()
   };

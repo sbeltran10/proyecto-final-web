@@ -10,6 +10,7 @@ Garments.schema = new SimpleSchema({
     user: { type: String },
     type: { type: String },
     tag: { type: [String] },
+    retailer: { type: String }
 
 });
 
@@ -20,13 +21,15 @@ Garments.schema = new SimpleSchema({
 
 if (Meteor.isServer) {
     Meteor.publish('garments', function garmentsPublication() {
-        return Garments.find({ user: this.userId }, {
+        return Garments.find(
+            { $or: [{ user: this.userId }, { $and: [{retailer: { $ne: 'none' }}, {retailer: { $ne: null }}]}] }, {
             fields: {
                 name: 1,
                 image: 1,
                 user: 1,
                 tag: 1,
-                type: 1
+                type: 1,
+                retailer: 1
             }
         });
     });
@@ -39,6 +42,8 @@ if (Meteor.isServer) {
             console.log(new Date().getTime());
             try {
                 garment.user = Meteor.userId();
+                if (Meteor.user().profile.retailer)
+                    garment.retailer = Meteor.user().profile.retailer;
                 Garments.insert(garment);
             }
             catch (err) {
@@ -48,14 +53,14 @@ if (Meteor.isServer) {
         },
         'garments.remove'(garmentId) {
 
-        if (!Meteor.user()) {
-            throw new Meteor.Error('not-authorized');
-        }
-        if (!garmentId || Object.keys(garmentId).length === 0) {
-            throw new Meteor.Error('invalid-id', "Invalid id");
-        }
-        return Garments.remove(garmentId);
-    },
+            if (!Meteor.user()) {
+                throw new Meteor.Error('not-authorized');
+            }
+            if (!garmentId || Object.keys(garmentId).length === 0) {
+                throw new Meteor.Error('invalid-id', "Invalid id");
+            }
+            return Garments.remove(garmentId);
+        },
     });
 }
 

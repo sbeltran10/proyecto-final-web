@@ -25,23 +25,6 @@ export default class Modal extends Component {
           a.props.login();
         }
       });
-
-      /*
-      jQuery.ajax({
-            url: a.props.url + "/login/",
-            type: "POST",
-            data: JSON.stringify(loginInfo),
-            dataType: "json",
-            contentType: "application/json; charset=utf-8",
-            success: function(data) {
-              //TODO
-              $('#userloginModal').modal('toggle');
-            },
-            error: function(jqXHR, textStatus, errorThrown) {
-                console.log(jqXHR);
-            }
-        });
-        */
     });
   }
 
@@ -56,7 +39,8 @@ export default class Modal extends Component {
 
       var newProfile = {
         first_name: signUpInfo.first_name,
-        last_name: signUpInfo.last_name
+        last_name: signUpInfo.last_name,
+        retailer: "none"
       }
       Accounts.createUser({
         email: signUpInfo.email,
@@ -71,23 +55,6 @@ export default class Modal extends Component {
           $('#userloginModal').modal('toggle');
         }
       });
-
-      /*
-      jQuery.ajax({
-            url: a.props.url + "/signUp/",
-            type: "POST",
-            data: JSON.stringify(signUpInfo),
-            dataType: "json",
-            contentType: "application/json; charset=utf-8",
-            success: function(data) {
-              //TODO
-              $('#userregisterModalForm').modal('toggle');
-            },
-            error: function(jqXHR, textStatus, errorThrown) {
-                console.log(jqXHR);
-            }
-        });
-        */
     });
   }
 

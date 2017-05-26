@@ -13,7 +13,7 @@
 }
 
 .wardrobe-slot-empty{
-    border: 0.1em solid black;
+    border: 0.15em solid black;
     margin: 0.5em;
     border-radius: 10%;
     background-color: grey;
@@ -22,7 +22,7 @@
 }
 
 .wardrobe-slot-item{
-    border: 0.1em solid black;
+    border: 0.15em solid gray;
     margin: 0.5em;
     border-radius: 10%;
     height: 9em;
@@ -105,7 +105,7 @@
 }
 
 .slot-hat, .slot-shirt, .slot-pants, .slot-shoes, .slot-accessory1, .slot-accessory2{
-    border: 0.1em solid black;
+    border: 0.2em solid black;
     margin: 0.1em;
     border-radius: 10%;
     background-color: grey;
@@ -160,6 +160,7 @@
 }
 
 .filled{
+    border: 0.15em solid gray;
     opacity: 1;
     background-color: white;
 }
